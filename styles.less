@@ -1,0 +1,48 @@
+@mainFontSize: 18px;
+@countryColor: #eae485;
+@sphereColor: lighten(@countryColor, 23%);
+
+#select-menu {
+  margin-right: 10px;
+  float: left;
+}
+
+#theme-select {
+  float: left;
+}
+
+.select-menus-container {
+  margin-left: 30px;
+  height: 4px;
+  font-size: @mainFontSize;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.sphere {
+  fill: @sphereColor;
+}
+
+.country {
+  fill: @countryColor;
+  stroke: black;
+  stroke-width: 0.1px;
+  stroke-opacity: 0.5;
+}
+
+.visited {
+  fill: darken(@countryColor, 15%);
+}
+
+.pin {
+  cursor: pointer;
+}
+
+div.label {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 2px;
+  background: lighten(@countryColor, 19%);
+  border-radius: 2px;
+}
