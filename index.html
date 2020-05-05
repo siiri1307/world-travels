@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>World travels</title>
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="topojson.js"></script>
+  </head>
+  <body>
+    <div class="select-menus-container">
+      <div id="select-menu">
+        <label for="year-select-menu">Select year:</label>
+        <select id="year-select-menu">
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+        </select>
+      </div>
+      <div id="theme-select">
+        <label>Select theme</label>
+        <select>
+          <option value="default">Default</option>
+          <option value="blue">Blue</option>
+        </select>
+      </div>
+    </div>
+    <div class="svgContainer">
+      <svg></svg>
+    </div>
+    <script>
+      var svg, g, pinLayer;
+      var width = window.innerWidth;
+      var height = 500;
+      var centered;
+      var visited;
+      const selectMenu = document.querySelector("#year-select-menu");
+      const themeSelectMenu = document.querySelector("#theme-select");
+      var selectedYear = setCurrentYearInSelect();
+      var label = d3.select("body").append("div").attr("class", "label").style("opacity", 0);
+      var svgIconContainer = d3.select("body").append("svg").attr("height", 5).attr("width", 5);
+      var pinIcon;
+      d3.xml("pin_colored_circle.svg").then(data => {
+        pinIcon = data.documentElement;
+      });
+
+      const projection = d3.geoMercator().center([10, 14]);
+      const pathGenerator = d3.geoPath().projection(projection);
+
+      function getVisitedCountries() {
+        return fetch("countries.json").then(response => response.json());
+      }
+
+      function setCurrentYearInSelect() {
+        var optionsNodeList = document.querySelectorAll("select#year-select-menu option");
+
+        for (let option of optionsNodeList) {
+          if (option.value == new Date().getFullYear()) {
+            option.setAttribute("selected", "");
+            return option.value;
+          }
+        }
+      }
+
+      selectMenu.addEventListener("change", event => {
+        var svgElem = document.querySelector("svg");
+        var cloneSvgElem = svgElem.cloneNode(false);
+        svgElem.parentNode.replaceChild(cloneSvgElem, svgElem);
+        selectedYear = event.target.value;
+        visitedCountries = filterVisitedCountriesByYear(event.target.value, visited);
+        loadMap(visitedCountries);
+      });
+
+      themeSelectMenu.addEventListener("change", event => {
+        var theme = event.target.value;
+        if (theme === "blue") {
+          less.modifyVars({
+            "@countryColor": "#f9f8de",
+            "@sphereColor": "#85eae9",
+          });
+        } else if (theme === "default") {
+          less.modifyVars({
+            "@countryColor": "#eae485",
+            "@sphereColor": "lighten(@countryColor, 23%)",
+          });
+        }
+      });
+
+      function getTowns(year, country, visitedCountries) {
+        for (let entry of visitedCountries) {
+          if (entry.year == year && entry.country == country) {
+            if (entry.towns) {
+              return entry.towns;
+            } else {
+              return [];
+            }
+          }
+        }
+      }
+
+      function filterVisitedCountriesByYear(year, data) {
+        var filteredCountries = [];
+
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].year == year) {
+            filteredCountries.push(data[i].country);
+          }
+        }
+        return filteredCountries;
+      }
+
+      function loadMap(visitedCountries) {
+        console.log(visitedCountries);
+
+        svg = d3.select("svg").attr("width", width).attr("height", height);
+
+        g = svg.append("g");
+
+        g.append("path")
+          .attr("class", "sphere")
+          .attr("d", pathGenerator({ type: "Sphere" }));
+
+        d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(data => {
+          //converts TopoJSON to GeoJSON feature
+          const countries = topojson.feature(data, data.objects.countries);
+          console.log(countries);
+
+          const paths = g
+            .selectAll("path")
+            .data(countries.features)
+            .enter()
+            .append("path")
+            .attr("class", "country")
+            .attr("id", function (d) {
+              return d.properties.name;
+            })
+            .classed("visited", function (d) {
+              return visitedCountries.includes(d.properties.name);
+            })
+            .attr("d", d => pathGenerator(d))
+            .on("click", d => clicked(d, visitedCountries));
+        });
+      }
+
+      function clicked(d, visitedCountries) {
+        var x, y, k;
+        if (d && centered !== d && visitedCountries.includes(d.properties.name)) {
+          var countryCenter = pathGenerator.centroid(d);
+          var bounds = pathGenerator.bounds(d);
+          var widthC = bounds[1][0] - bounds[0][0];
+          var heightC = bounds[1][1] - bounds[0][1];
+          x = (bounds[0][0] + bounds[1][0]) / 2;
+          y = (bounds[0][1] + bounds[1][1]) / 2;
+          k = Math.min(width / widthC, height / heightC);
+          centered = d;
+
+          var visitedTowns = getTowns(selectedYear, d.properties.name, visited);
+          var s = 37;
+
+          g.selectAll(".pin")
+            .data(visitedTowns)
+            .enter()
+            .append(() => pinIcon.cloneNode(true))
+            .attr("class", "pin")
+            .attr("height", s / k + "px")
+            .attr("width", s / k + "px")
+            .attr("x", function (d) {
+              return projection([d.longitude, d.latitude])[0] - s / k / 1.8;
+            })
+            .attr("y", function (d) {
+              return projection([d.longitude, d.latitude])[1] - s / k;
+            })
+            .on("mouseover", d => {
+              var pX = projection([d.longitude, d.latitude])[0];
+              var pY = projection([d.longitude, d.latitude])[1];
+              label.transition().duration(200).style("opacity", 0.9);
+              label
+                .text(d.town + ": " + d.startDate + " " + getMonthName(d.startMonth) + " - " + d.endDate + " " + getMonthName(d.endMonth))
+                .style("left", d3.event.pageX + 10 + "px")
+                .style("top", d3.event.pageY + "px");
+            })
+            .on("mouseout", d => {
+              label.transition().duration(500).style("opacity", 0);
+            });
+        } else {
+          //reset to world view
+          x = width / 2;
+          y = height / 2;
+          k = 1;
+          centered = null;
+          g.selectAll(".pin").data([]).exit().remove();
+        }
+
+        g.transition()
+          .duration(750)
+          .attr("transform", "translate(" + width / 2 + ", " + height / 2 + ") scale(" + k + ") translate(" + -x + ", " + -y + ")");
+      }
+
+      function getMonthName(number) {
+        switch (number) {
+          case 1:
+            return "Jan";
+          case 2:
+            return "Feb";
+          case 3:
+            return "Mar";
+          case 4:
+            return "Apr";
+          case 5:
+            return "May";
+          case 6:
+            return "Jun";
+          case 7:
+            return "Jul";
+          case 8:
+            return "Aug";
+          case 9:
+            return "Sept";
+          case 10:
+            return "Oct";
+          case 11:
+            return "Nov";
+          case 12:
+            return "Dec";
+        }
+      }
+
+      getVisitedCountries().then(response => {
+        visited = response;
+        loadMap(filterVisitedCountriesByYear(selectedYear, visited));
+      });
+    </script>
+  </body>
+</html>

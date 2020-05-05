@@ -1,0 +1,649 @@
+[
+  {
+    "year": 2017,
+    "country": "Spain",
+    "towns": [
+      {
+        "town": "Port de Pollença",
+        "latitude": 39.9075,
+        "longitude": 3.0814,
+        "startDate": 20,
+        "startMonth": 9,
+        "endDate": 28,
+        "endMonth": 9
+      }
+    ]
+  },
+
+  {
+    "year": 2017,
+    "changeOfYear": true,
+    "country": "Thailand",
+    "towns": [
+      {
+        "town": "Chiang Mai",
+        "latitude": 18.79038,
+        "longitude": 98.98468,
+        "startDate": 3,
+        "startMonth": 12,
+        "endDate": 1,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Sri Lanka",
+    "towns": [
+      {
+        "town": "Midigama",
+        "latitude": 5.9719,
+        "longitude": 80.3918,
+        "startDate": 2,
+        "startMonth": 1,
+        "endDate": 7,
+        "endMonth": 1
+      },
+      {
+        "town": "Ella",
+        "latitude": 6.8511,
+        "longitude": 81.5,
+        "startDate": 7,
+        "startMonth": 1,
+        "endDate": 9,
+        "endMonth": 1
+      },
+      {
+        "town": "Kandy",
+        "latitude": 7.2906,
+        "longitude": 80.6336,
+        "startDate": 9,
+        "startMonth": 1,
+        "endDate": 10,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Thailand",
+    "towns": [
+      {
+        "town": "Ko Lanta",
+        "latitude": 7.65,
+        "longitude": 99.1,
+        "startDate": 11,
+        "startMonth": 1,
+        "endDate": 9,
+        "endMonth": 2
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Malaysia",
+    "towns": [
+      {
+        "town": "George Town",
+        "latitude": 5.41123,
+        "longitude": 100.33543,
+        "startDate": 9,
+        "startMonth": 2,
+        "endDate": 13,
+        "endMonth": 2
+      },
+      {
+        "town": "Kuala Lumpur",
+        "latitude": 3.1412,
+        "longitude": 101.68653,
+        "startDate": 13,
+        "startMonth": 2,
+        "endDate": 16,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Singapore",
+    "towns": [
+      {
+        "town": "Singapore",
+        "latitude": 1.28967,
+        "longitude": 103.85007,
+        "startDate": 3,
+        "startMonth": 3,
+        "endDate": 4,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Taiwan",
+    "towns": [
+      {
+        "town": "Taipei",
+        "latitude": 25.04776,
+        "longitude": 121.53185,
+        "startDate": 16,
+        "startMonth": 3,
+        "endDate": 19,
+        "endMonth": 3
+      },
+      {
+        "town": "Hualien",
+        "latitude": 23.97694,
+        "longitude": 121.60444,
+        "startDate": 19,
+        "startMonth": 3,
+        "endDate": 20,
+        "endMonth": 3
+      },
+      {
+        "town": "Taipei",
+        "latitude": 25.04776,
+        "longitude": 121.53185,
+        "startDate": 20,
+        "startMonth": 3,
+        "endDate": 23,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Japan",
+    "towns": [
+      {
+        "town": "Osaka",
+        "latitude": 34.69374,
+        "longitude": 135.50218,
+        "startDate": 23,
+        "startMonth": 3,
+        "endDate": 24,
+        "endMonth": 3
+      },
+      {
+        "town": "Kyoto",
+        "latitude": 35.02107,
+        "longitude": 135.75385,
+        "startDate": 24,
+        "startMonth": 3,
+        "endDate": 26,
+        "endMonth": 3
+      },
+      {
+        "town": "Hakone",
+        "latitude": 35.18945,
+        "longitude": 139.02649,
+        "startDate": 26,
+        "startMonth": 3,
+        "endDate": 27,
+        "endMonth": 3
+      },
+      {
+        "town": "Tokyo",
+        "latitude": 35.6895,
+        "longitude": 139.69171,
+        "startDate": 27,
+        "startMonth": 3,
+        "endDate": 31,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Austria",
+    "towns": [
+      {
+        "town": "Maria Alm",
+        "latitude": 47.40439,
+        "longitude": 12.9031,
+        "startDate": 19,
+        "startMonth": 7,
+        "endDate": 23,
+        "endMonth": 7
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Switzerland",
+    "towns": [
+      {
+        "town": "Nyon",
+        "latitude": 46.38318,
+        "longitude": 6.23955,
+        "startDate": 3,
+        "startMonth": 9,
+        "endDate": 4,
+        "endMonth": 9
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Cyprus",
+    "towns": [
+      {
+        "town": "Paphos",
+        "latitude": 34.77679,
+        "longitude": 32.42451,
+        "startDate": 4,
+        "startMonth": 11,
+        "endDate": 11,
+        "endMonth": 11
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "country": "Costa Rica",
+    "towns": [
+      {
+        "town": "Santa Teresa",
+        "latitude": 9.64724,
+        "longitude": -85.17104,
+        "startDate": 24,
+        "startMonth": 11,
+        "endDate": 22,
+        "endMonth": 12
+      },
+      {
+        "town": "Cahuita",
+        "latitude": 9.73781,
+        "longitude": -82.84042,
+        "startDate": 23,
+        "startMonth": 12,
+        "endDate": 26,
+        "endMonth": 12
+      },
+      {
+        "town": "San Jose",
+        "latitude": 9.93333,
+        "longitude": -84.08333,
+        "startDate": 26,
+        "startMonth": 12,
+        "endDate": 28,
+        "endMonth": 12
+      }
+    ]
+  },
+
+  {
+    "year": 2018,
+    "changeOfYear": true,
+    "country": "Peru",
+    "towns": [
+      {
+        "town": "Lima",
+        "latitude": -12.04318,
+        "longitude": -77.02824,
+        "startDate": 28,
+        "startMonth": 12,
+        "endDate": 1,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "Peru",
+    "towns": [
+      {
+        "town": "Cusco",
+        "latitude": -13.52264,
+        "longitude": -71.96734,
+        "startDate": 1,
+        "startMonth": 1,
+        "endDate": 2,
+        "endMonth": 1
+      },
+      {
+        "town": "Machu Picchu",
+        "latitude": -13.15833,
+        "longitude": -72.53139,
+        "startDate": 2,
+        "startMonth": 1,
+        "endDate": 3,
+        "endMonth": 1
+      },
+      {
+        "town": "Ollantaytambo",
+        "latitude": -13.25722,
+        "longitude": -72.26306,
+        "startDate": 3,
+        "startMonth": 1,
+        "endDate": 4,
+        "endMonth": 1
+      },
+      {
+        "town": "Cusco",
+        "latitude": -13.52264,
+        "longitude": -71.96734,
+        "startDate": 4,
+        "startMonth": 1,
+        "endDate": 5,
+        "endMonth": 1
+      },
+      {
+        "town": "Lima",
+        "latitude": -12.04318,
+        "longitude": -77.02824,
+        "startDate": 5,
+        "startMonth": 1,
+        "endDate": 6,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "Chile",
+    "towns": [
+      {
+        "town": "Santiago",
+        "latitude": -33.45,
+        "longitude": -70.666667,
+        "startDate": 6,
+        "startMonth": 1,
+        "endDate": 3,
+        "endMonth": 2
+      },
+      {
+        "town": "San Pedro de Atacama",
+        "latitude": -22.9111,
+        "longitude": -68.20113,
+        "startDate": 17,
+        "startMonth": 1,
+        "endDate": 20,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "Uruguay",
+    "towns": [
+      {
+        "town": "Montevideo",
+        "latitude": -34.90328,
+        "longitude": -56.18816,
+        "startDate": 4,
+        "startMonth": 2,
+        "endDate": 9,
+        "endMonth": 3
+      },
+      {
+        "town": "Punta del Este",
+        "latitude": -34.94747,
+        "longitude": -54.93382,
+        "startDate": 8,
+        "startMonth": 2,
+        "endDate": 10,
+        "endMonth": 2
+      },
+      {
+        "town": "Colonia del Sacramento",
+        "latitude": -34.46262,
+        "longitude": -57.83976,
+        "startDate": 9,
+        "startMonth": 3,
+        "endDate": 10,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "Argentina",
+    "towns": [
+      {
+        "town": "Buenos Aires",
+        "latitude": -34.61315,
+        "longitude": -58.37723,
+        "startDate": 10,
+        "startMonth": 3,
+        "endDate": 12,
+        "endMonth": 4
+      },
+      {
+        "town": "Puerto Madryn",
+        "latitude": -42.7692,
+        "longitude": -65.03851,
+        "startDate": 15,
+        "startMonth": 3,
+        "endDate": 17,
+        "endMonth": 3
+      },
+      {
+        "town": "Cataratas del Iguazú",
+        "latitude": -25.66667,
+        "longitude": -54.45,
+        "startDate": 7,
+        "startMonth": 4,
+        "endDate": 8,
+        "endMonth": 4
+      },
+      {
+        "town": "San Antonio de Areco",
+        "latitude": -34.2503,
+        "longitude": -59.47163,
+        "startDate": 9,
+        "startMonth": 4,
+        "endDate": 11,
+        "endMonth": 4
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "Spain",
+    "towns": [
+      {
+        "town": "Madrid",
+        "latitude": 40.4165,
+        "longitude": -3.70256,
+        "startDate": 4,
+        "startMonth": 10,
+        "endDate": 13,
+        "endMonth": 10
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "United Arab Emirates",
+    "towns": [
+      {
+        "town": "Dubai",
+        "latitude": 25.07725,
+        "longitude": 55.30927,
+        "startDate": 26,
+        "startMonth": 11,
+        "endDate": 30,
+        "endMonth": 11
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "country": "Sri Lanka",
+    "towns": [
+      {
+        "town": "Habaraduwa",
+        "latitude": 5.9977,
+        "longitude": 80.2958,
+        "startDate": 1,
+        "startMonth": 12,
+        "endDate": 30,
+        "endMonth": 12
+      }
+    ]
+  },
+
+  {
+    "year": 2019,
+    "changeOfYear": true,
+    "country": "Malaysia",
+    "towns": [
+      {
+        "town": "Kuala Lumpur",
+        "latitude": 3.1412,
+        "longitude": 101.68653,
+        "startDate": 30,
+        "startMonth": 12,
+        "endDate": 1,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2020,
+    "country": "Philippines",
+    "towns": [
+      {
+        "town": "Manila",
+        "latitude": 14.6042,
+        "longitude": 120.9822,
+        "startDate": 1,
+        "startMonth": 1,
+        "endDate": 2,
+        "endMonth": 1
+      },
+      {
+        "town": "Palawan",
+        "latitude": 9.5,
+        "longitude": 118.5,
+        "startDate": 2,
+        "startMonth": 1,
+        "endDate": 12,
+        "endMonth": 1
+      },
+      {
+        "town": "Dumaguete",
+        "latitude": 9.3001,
+        "longitude": 123.29954,
+        "startDate": 12,
+        "startMonth": 1,
+        "endDate": 7,
+        "endMonth": 2
+      },
+      {
+        "town": "Cebu City",
+        "latitude": 10.31672,
+        "longitude": 123.89071,
+        "startDate": 7,
+        "startMonth": 2,
+        "endDate": 9,
+        "endMonth": 2
+      },
+      {
+        "town": "Bohol",
+        "latitude": 9.83333,
+        "longitude": 124.16667,
+        "startDate": 31,
+        "startMonth": 1,
+        "endDate": 3,
+        "endMonth": 2
+      },
+      {
+        "town": "Siquijor",
+        "latitude": 9.2142,
+        "longitude": 123.515,
+        "startDate": 18,
+        "startMonth": 1,
+        "endDate": 19,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2020,
+    "country": "Estonia",
+    "towns": [
+      { "town": "Tallinn", "latitude": 59.43696, "longitude": 24.75353, "startDate": 3, "startMonth": 1, "endDate": 5, "endMonth": 2 },
+      { "town": "Tartu", "latitude": 58.37498, "longitude": 26.73256, "startDate": 5, "startMonth": 7, "endDate": 8, "endMonth": 7 }
+    ]
+  },
+
+  {
+    "year": 2020,
+    "country": "Vietnam",
+    "towns": [
+      {
+        "town": "Hoi An",
+        "latitude": 15.87944,
+        "longitude": 108.335,
+        "startDate": 9,
+        "startMonth": 2,
+        "endDate": 7,
+        "endMonth": 3
+      },
+      {
+        "town": "Hue",
+        "latitude": 16.4619,
+        "longitude": 107.59546,
+        "startDate": 22,
+        "startMonth": 2,
+        "endDate": 23,
+        "endMonth": 2
+      },
+      {
+        "town": "Da Nang",
+        "latitude": 16.06778,
+        "longitude": 108.22083,
+        "startDate": 29,
+        "startMonth": 2,
+        "endDate": 1,
+        "endMonth": 3
+      },
+      {
+        "town": "Hanoi",
+        "latitude": 21.0245,
+        "longitude": 105.84117,
+        "startDate": 7,
+        "startMonth": 3,
+        "endDate": 10,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2020,
+    "country": "Indonesia",
+    "towns": [
+      {
+        "town": "Ubud",
+        "latitude": -8.5098,
+        "longitude": 115.2654,
+        "startDate": 10,
+        "startMonth": 3,
+        "endDate": 19,
+        "endMonth": 3
+      }
+    ]
+  }
+]
