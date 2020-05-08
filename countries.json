@@ -1,5 +1,71 @@
 [
   {
+    "year": 2016,
+    "country": "Thailand",
+    "towns": [
+      {
+        "town": "Bangkok",
+        "latitude": 13.75398,
+        "longitude": 100.50144,
+        "startDate": 10,
+        "startMonth": 1,
+        "endDate": 17,
+        "endMonth": 1
+      },
+      {
+        "town": "Khao Sok",
+        "latitude": 8.91545,
+        "longitude": 98.52838,
+        "startDate": 15,
+        "startMonth": 1,
+        "endDate": 17,
+        "endMonth": 1
+      },
+      {
+        "town": "Krabi",
+        "latitude": 8.07257,
+        "longitude": 98.91052,
+        "startDate": 17,
+        "startMonth": 1,
+        "endDate": 22,
+        "endMonth": 1
+      }
+    ]
+  },
+
+  {
+    "year": 2016,
+    "country": "Austria",
+    "towns": [
+      {
+        "town": "Vienna",
+        "latitude": 48.20849,
+        "longitude": 16.37208,
+        "startDate": 25,
+        "startMonth": 3,
+        "endDate": 27,
+        "endMonth": 3
+      }
+    ]
+  },
+
+  {
+    "year": 2016,
+    "country": "Germany",
+    "towns": [
+      {
+        "town": "Berlin",
+        "latitude": 52.52437,
+        "longitude": 13.41053,
+        "startDate": 7,
+        "startMonth": 10,
+        "endDate": 10,
+        "endMonth": 10
+      }
+    ]
+  },
+
+  {
     "year": 2017,
     "country": "Spain",
     "towns": [
