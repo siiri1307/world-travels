@@ -2,6 +2,10 @@
 @countryColor: #eae485;
 @sphereColor: lighten(@countryColor, 23%);
 
+body {
+  overflow: hidden;
+}
+
 #select-menu {
   margin-right: 10px;
   float: left;
@@ -12,11 +16,11 @@
 }
 
 .select-menus-container {
-  margin-left: 30px;
+  //margin-left: 30px;
   height: 4px;
   font-size: @mainFontSize;
-  margin-bottom: 40px;
-  margin-top: 20px;
+  margin-bottom: 33px;
+  //margin-top: 20px;
 }
 
 .sphere {
@@ -36,6 +40,27 @@
 
 .pin {
   cursor: pointer;
+}
+
+.svgContainer {
+  //margin-left: 40px;
+  // display: flex;
+  // justify-content: center;
+  width: 1000px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+}
+
+.mapSvg {
+  width: 100%;
+  height: 100%;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
 }
 
 div.label {
