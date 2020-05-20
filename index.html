@@ -4,95 +4,135 @@
     <meta charset="utf-8" />
     <title>World travels</title>
     <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
     <script type="text/javascript" src="d3.js"></script>
     <script type="text/javascript" src="topojson.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <div class="svgContainer">
-      <div class="select-menus-container">
-        <div id="select-menu">
-          <label for="year-select-menu">Select year:</label>
-          <select id="year-select-menu">
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-          </select>
+    <div class="page-wrapper">
+      <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-header">
+          <div class="sidebar-header-text">Travels of Siiri and Vootele</div>
+          <img class="sidebar-rounded-image" src="us.jpg" />
+          <img class="sidebar-bg-image" src="coconut_hill.jpg" />
         </div>
-        <div id="theme-select">
-          <label>Select theme</label>
-          <select>
-            <option value="default">Default</option>
-            <option value="blue">Blue</option>
-          </select>
+        <div class="sidebar-menu">
+          <ul>
+            <li class="sidebar-dropdown">
+              <div class="year">Year</div>
+              <div class="sidebar-submenu">
+                <ul class="years">
+                  <li>2016</li>
+                  <li>2017</li>
+                  <li>2018</li>
+                  <li>2019</li>
+                  <li>2020</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="sidebar-dropdown">
+              <div class="theme">Theme</div>
+              <div class="sidebar-submenu">
+                <ul class="themes">
+                  <li>Blue</li>
+                  <li class="selectedMenuItem">Default</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </div>
+        <div class="copyright">Copyright &copy;2020 All rights reserved</div>
+      </nav>
+      <img class="collapse-btn" src="right-arrow.svg" />
+      <div class="svgContainer">
+        <svg class="mapSvg"></svg>
       </div>
-      <svg class="mapSvg"></svg>
     </div>
     <script>
-      var svg, g;
-      var width;
-      var height;
+      var svg, g, centered, visited, pinIcon;
       var svgIconName = "pin_colored_circle.svg";
       var countriesFileName = "countries.json";
-      var centered;
-      var visited;
-      const selectMenu = document.querySelector("#year-select-menu");
-      const themeSelectMenu = document.querySelector("#theme-select");
-      var selectedYear = setCurrentYearInSelect();
+      var yearSelectMenu = document.querySelector(".years");
+      var themeSelectMenu = document.querySelector(".themes");
+      var selectedYear = setCurrentYear();
       var label = d3.select("body").append("div").attr("class", "label").style("opacity", 0);
-      var pinIcon;
       var svgElement = document.querySelector(".mapSvg");
-      console.log("IH: " + window.innerHeight);
-      console.log("IW: " + window.innerWidth);
+      var collapseBtn = document.querySelector(".collapse-btn");
+      var sideBar = document.querySelector(".sidebar-wrapper");
+      var svgContainer = document.querySelector(".svgContainer");
+      var projection = d3.geoMercator().center([20, 0]);
+      var pathGenerator = d3.geoPath().projection(projection);
 
       d3.xml(svgIconName).then(data => {
         pinIcon = data.documentElement;
       });
 
-      const projection = d3.geoMercator().center([10, 14]);
-
-      const pathGenerator = d3.geoPath().projection(projection);
-
       function getVisitedCountries() {
         return fetch(countriesFileName).then(response => response.json());
       }
 
-      function setCurrentYearInSelect() {
-        var optionsNodeList = document.querySelectorAll("select#year-select-menu option");
+      function setCurrentYear() {
+        let optionsNodeList = document.querySelectorAll(".years li");
 
         for (let option of optionsNodeList) {
-          if (option.value == new Date().getFullYear()) {
-            option.setAttribute("selected", "");
-            return option.value;
+          if (option.textContent == new Date().getFullYear()) {
+            option.classList.add("selectedMenuItem");
+            return option.textContent;
           }
         }
       }
 
-      selectMenu.addEventListener("change", event => {
+      collapseBtn.addEventListener("click", () => {
+        this.toggleSideNavigation();
+      });
+
+      yearSelectMenu.addEventListener("click", event => {
         var svgElem = document.querySelector("svg");
         var cloneSvgElem = svgElem.cloneNode(false);
         svgElem.parentNode.replaceChild(cloneSvgElem, svgElem);
-        selectedYear = event.target.value;
-        visitedCountries = filterVisitedCountriesByYear(event.target.value, visited);
+        document.querySelector(".years .selectedMenuItem").classList.remove("selectedMenuItem");
+        selectedYear = event.target.textContent;
+        event.target.classList.add("selectedMenuItem");
+        visitedCountries = filterVisitedCountriesByYear(selectedYear, visited);
         loadMap(visitedCountries);
       });
 
-      themeSelectMenu.addEventListener("change", event => {
-        var theme = event.target.value;
-        if (theme === "blue") {
+      themeSelectMenu.addEventListener("click", event => {
+        let theme = event.target.textContent;
+        if (theme === "Blue") {
           less.modifyVars({
             "@countryColor": "#f9f8de",
+            "@sideNavigationColor": "desaturate(@countryColor, 10%)",
             "@sphereColor": "#85eae9",
+            "@visitedCountryColor": "darken(@countryColor, 17%)",
+            "@selectedMenuItemBgColor": "darken(@countryColor, 10%)",
           });
-        } else if (theme === "default") {
+        } else if (theme === "Default") {
           less.modifyVars({
-            "@countryColor": "#eae485",
-            "@sphereColor": "lighten(@countryColor, 23%)",
+            "@base": "#eae485",
           });
         }
+        document.querySelector(".themes .selectedMenuItem").classList.remove("selectedMenuItem");
+        event.target.classList.add("selectedMenuItem");
       });
 
       function getTowns(year, country, visitedCountries) {
@@ -108,7 +148,7 @@
       }
 
       function filterVisitedCountriesByYear(year, data) {
-        var filteredCountries = [];
+        let filteredCountries = [];
 
         for (var i = 0; i < data.length; i++) {
           if (data[i].year == year) {
@@ -119,21 +159,12 @@
       }
 
       function loadMap(visitedCountries) {
-        console.log(visitedCountries);
+        svg = d3.select(".mapSvg").attr("viewBox", "0 0 850 425");
 
-        svg = d3
-          .select(".mapSvg")
-          .attr("viewBox", "0 0 936 468")
-          .attr("preserveAspectRatio", "none")
-          .attr("width", "1000")
-          .attr("height", "500");
-
-        //svg.append("rect").attr("class", "sphere").attr("width", "100%").attr("height", "100%");
-        g = svg.append("g").attr("class", "gElem");
+        g = svg.append("g");
 
         g.append("path")
           .attr("class", "sphere")
-          //.attr("transform", "scale(1.04)")
           .attr("d", pathGenerator({ type: "Sphere" }));
 
         d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(data => {
@@ -159,24 +190,21 @@
       }
 
       function clicked(d, visitedCountries) {
-        console.log("G width: " + document.querySelector(".gElem").getBBox().width);
-        var svgElemWidth = document.querySelector(".mapSvg").width.baseVal.value;
-        console.log(svgElemWidth);
-        var svgElemHeight = document.querySelector(".mapSvg").height.baseVal.value;
-        console.log(svgElemHeight);
-        var x, y, k;
+        //dividing it because the world map is "zoomed in" with viewBox. Width of viewBox is about 1.5 smaller than width of Viewport
+        let svgElemWidth = svgContainer.offsetWidth / (svgContainer.offsetWidth / 850);
+        let svgElemHeight = svgContainer.offsetHeight / (svgContainer.offsetHeight / 425);
+        let x, y, k;
         if (d && centered !== d && visitedCountries.includes(d.properties.name)) {
-          var countryCenter = pathGenerator.centroid(d);
-          var bounds = pathGenerator.bounds(d);
-          var widthC = bounds[1][0] - bounds[0][0];
-          var heightC = bounds[1][1] - bounds[0][1];
+          let bounds = pathGenerator.bounds(d);
+          let widthC = bounds[1][0] - bounds[0][0];
+          let heightC = bounds[1][1] - bounds[0][1];
           x = (bounds[0][0] + bounds[1][0]) / 2;
           y = (bounds[0][1] + bounds[1][1]) / 2;
           k = Math.min(svgElemWidth / widthC, svgElemHeight / heightC);
           centered = d;
 
-          var visitedTowns = getTowns(selectedYear, d.properties.name, visited);
-          var s = 37;
+          let visitedTowns = getTowns(selectedYear, d.properties.name, visited);
+          let s = 27;
 
           g.selectAll(".pin")
             .data(visitedTowns)
@@ -186,14 +214,12 @@
             .attr("height", s / k + "px")
             .attr("width", s / k + "px")
             .attr("x", function (d) {
-              return projection([d.longitude, d.latitude])[0] - s / k / 1.8;
+              return projection([d.longitude, d.latitude])[0] - s / k / 2;
             })
             .attr("y", function (d) {
               return projection([d.longitude, d.latitude])[1] - s / k;
             })
             .on("mouseover", d => {
-              var pX = projection([d.longitude, d.latitude])[0];
-              var pY = projection([d.longitude, d.latitude])[1];
               label.transition().duration(200).style("opacity", 0.9);
               label
                 .text(d.town + ": " + d.startDate + " " + getMonthName(d.startMonth) + " - " + d.endDate + " " + getMonthName(d.endMonth))
@@ -246,6 +272,34 @@
             return "Nov";
           case 12:
             return "Dec";
+        }
+      }
+
+      $(".sidebar-dropdown > div:first-child").click(function () {
+        $(".sidebar-submenu").slideUp(200);
+        if ($(this).parent().hasClass("active")) {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).parent().removeClass("active");
+        } else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).next(".sidebar-submenu").slideDown(200);
+          $(this).parent().addClass("active");
+        }
+      });
+
+      function toggleSideNavigation() {
+        if (sideBar.offsetWidth == 0) {
+          sideBar.style.width = "20vw";
+          svgContainer.style.width = "80vw";
+          document.querySelector(".svgContainer").style.marginLeft = "20vw";
+          collapseBtn.style.left = "20vw";
+          collapseBtn.style.transform = "rotate(180deg)";
+        } else {
+          sideBar.style.width = "0vw";
+          svgContainer.style.width = "100vw";
+          document.querySelector(".svgContainer").style.marginLeft = "0vw";
+          collapseBtn.style.transform = "rotate(360deg)";
+          collapseBtn.style.left = "0vw";
         }
       }
 
