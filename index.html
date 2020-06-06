@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+    <script src="https://unpkg.com/@reactivex/rxjs@6.5.5/dist/global/rxjs.umd.js"></script>
     <script type="text/javascript" src="d3.js"></script>
     <script type="text/javascript" src="topojson.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -68,7 +69,9 @@
       </div>
     </div>
     <script>
-      var svg, g, centered, visited, pinIcon;
+      const { map, filter } = rxjs.operators;
+      const { from, pipe, fromEvent } = rxjs;
+      var svg, g, centered, allVisitedCountries, pinIcon;
       var svgIconName = "pin_colored_circle.svg";
       var countriesFileName = "countries.json";
       var yearSelectMenu = document.querySelector(".years");
@@ -101,22 +104,21 @@
         }
       }
 
-      collapseBtn.addEventListener("click", () => {
+      fromEvent(collapseBtn, "click").subscribe(() => {
         this.toggleSideNavigation();
       });
 
-      yearSelectMenu.addEventListener("click", event => {
-        var svgElem = document.querySelector("svg");
-        var cloneSvgElem = svgElem.cloneNode(false);
+      fromEvent(yearSelectMenu, "click").subscribe(event => {
+        let svgElem = document.querySelector("svg");
+        let cloneSvgElem = svgElem.cloneNode(false);
         svgElem.parentNode.replaceChild(cloneSvgElem, svgElem);
         document.querySelector(".years .selectedMenuItem").classList.remove("selectedMenuItem");
         selectedYear = event.target.textContent;
         event.target.classList.add("selectedMenuItem");
-        visitedCountries = filterVisitedCountriesByYear(selectedYear, visited);
-        loadMap(visitedCountries);
+        loadMapWithFilteredCountries();
       });
 
-      themeSelectMenu.addEventListener("click", event => {
+      fromEvent(themeSelectMenu, "click").subscribe(event => {
         let theme = event.target.textContent;
         if (theme === "Blue") {
           less.modifyVars({
@@ -136,26 +138,11 @@
       });
 
       function getTowns(year, country, visitedCountries) {
-        for (let entry of visitedCountries) {
-          if (entry.year == year && entry.country == country) {
-            if (entry.towns) {
-              return entry.towns;
-            } else {
-              return [];
-            }
-          }
-        }
+        return from(visitedCountries).pipe(filter(entry => entry.year == year && entry.country == country && entry.towns));
       }
 
       function filterVisitedCountriesByYear(year, data) {
-        let filteredCountries = [];
-
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].year == year) {
-            filteredCountries.push(data[i].country);
-          }
-        }
-        return filteredCountries;
+        return from(data).pipe(filter(country => country.year == year));
       }
 
       function loadMap(visitedCountries) {
@@ -194,56 +181,60 @@
         let svgElemWidth = svgContainer.offsetWidth / (svgContainer.offsetWidth / 850);
         let svgElemHeight = svgContainer.offsetHeight / (svgContainer.offsetHeight / 425);
         let x, y, k;
-        if (d && centered !== d && visitedCountries.includes(d.properties.name)) {
-          let bounds = pathGenerator.bounds(d);
-          let widthC = bounds[1][0] - bounds[0][0];
-          let heightC = bounds[1][1] - bounds[0][1];
-          x = (bounds[0][0] + bounds[1][0]) / 2;
-          y = (bounds[0][1] + bounds[1][1]) / 2;
-          k = Math.min(svgElemWidth / widthC, svgElemHeight / heightC);
-          centered = d;
 
-          let visitedTowns = getTowns(selectedYear, d.properties.name, visited);
-          let s = 27;
+        getTowns(selectedYear, d.properties.name, allVisitedCountries).subscribe(x => {
+          let visitedTowns = x.towns;
 
-          g.selectAll(".pin")
-            .data(visitedTowns)
-            .enter()
-            .append(() => pinIcon.cloneNode(true))
-            .attr("class", "pin")
-            .attr("height", s / k + "px")
-            .attr("width", s / k + "px")
-            .attr("x", function (d) {
-              return projection([d.longitude, d.latitude])[0] - s / k / 2;
-            })
-            .attr("y", function (d) {
-              return projection([d.longitude, d.latitude])[1] - s / k;
-            })
-            .on("mouseover", d => {
-              label.transition().duration(200).style("opacity", 0.9);
-              label
-                .text(d.town + ": " + d.startDate + " " + getMonthName(d.startMonth) + " - " + d.endDate + " " + getMonthName(d.endMonth))
-                .style("left", d3.event.pageX + 10 + "px")
-                .style("top", d3.event.pageY + "px");
-            })
-            .on("mouseout", d => {
-              label.transition().duration(500).style("opacity", 0);
-            });
-        } else {
-          //reset to world view
-          x = svgElemWidth / 2;
-          y = svgElemHeight / 2;
-          k = 1;
-          centered = null;
-          g.selectAll(".pin").data([]).exit().remove();
-        }
+          if (d && centered !== d && visitedCountries.includes(d.properties.name)) {
+            let bounds = pathGenerator.bounds(d);
+            let widthC = bounds[1][0] - bounds[0][0];
+            let heightC = bounds[1][1] - bounds[0][1];
+            x = (bounds[0][0] + bounds[1][0]) / 2;
+            y = (bounds[0][1] + bounds[1][1]) / 2;
+            k = Math.min(svgElemWidth / widthC, svgElemHeight / heightC);
+            centered = d;
 
-        g.transition()
-          .duration(750)
-          .attr(
-            "transform",
-            "translate(" + svgElemWidth / 2 + ", " + svgElemHeight / 2 + ") scale(" + k + ") translate(" + -x + ", " + -y + ")"
-          );
+            let s = 27;
+
+            g.selectAll(".pin")
+              .data(visitedTowns)
+              .enter()
+              .append(() => pinIcon.cloneNode(true))
+              .attr("class", "pin")
+              .attr("height", s / k + "px")
+              .attr("width", s / k + "px")
+              .attr("x", function (d) {
+                return projection([d.longitude, d.latitude])[0] - s / k / 2;
+              })
+              .attr("y", function (d) {
+                return projection([d.longitude, d.latitude])[1] - s / k;
+              })
+              .on("mouseover", d => {
+                label.transition().duration(200).style("opacity", 0.9);
+                label
+                  .text(d.town + ": " + d.startDate + " " + getMonthName(d.startMonth) + " - " + d.endDate + " " + getMonthName(d.endMonth))
+                  .style("left", d3.event.pageX + 10 + "px")
+                  .style("top", d3.event.pageY + "px");
+              })
+              .on("mouseout", d => {
+                label.transition().duration(500).style("opacity", 0);
+              });
+          } else {
+            //reset to world view
+            x = svgElemWidth / 2;
+            y = svgElemHeight / 2;
+            k = 1;
+            centered = null;
+            g.selectAll(".pin").data([]).exit().remove();
+          }
+
+          g.transition()
+            .duration(750)
+            .attr(
+              "transform",
+              "translate(" + svgElemWidth / 2 + ", " + svgElemHeight / 2 + ") scale(" + k + ") translate(" + -x + ", " + -y + ")"
+            );
+        });
       }
 
       function getMonthName(number) {
@@ -303,9 +294,21 @@
         }
       }
 
+      function loadMapWithFilteredCountries() {
+        let visitedFilteredByYear = [];
+        filterVisitedCountriesByYear(selectedYear, allVisitedCountries).subscribe({
+          next: data => {
+            console.log(data.country);
+            visitedFilteredByYear.push(data.country);
+          },
+          error: () => console.log("Error occurred during filtering countries by year"),
+          complete: () => loadMap(visitedFilteredByYear),
+        });
+      }
+
       getVisitedCountries().then(response => {
-        visited = response;
-        loadMap(filterVisitedCountriesByYear(selectedYear, visited));
+        allVisitedCountries = response;
+        loadMapWithFilteredCountries();
       });
     </script>
   </body>
