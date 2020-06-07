@@ -39,6 +39,11 @@ body {
 
     .visited {
       fill: @visitedCountryColor;
+      cursor: zoom-in;
+    }
+
+    .zoomed-in {
+      cursor: zoom-out;
     }
 
     .pin {
@@ -86,12 +91,13 @@ body {
         height: 180px;
         width: 100%;
         position: relative;
+        display: flex;
+        justify-content: center;
 
         .sidebar-rounded-image {
           position: absolute;
           border-radius: 50%;
-          top: 3vh;
-          left: 5vw;
+          top: 2vh;
           width: 110px;
         }
 
