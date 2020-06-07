@@ -71,7 +71,8 @@
     <script>
       const { map, filter } = rxjs.operators;
       const { from, pipe, fromEvent } = rxjs;
-      var svg, g, centered, allVisitedCountries, pinIcon;
+      var svg, g, allVisitedCountries, pinIcon, previouslyZoomedCountry;
+      var centered = null;
       var svgIconName = "pin_colored_circle.svg";
       var countriesFileName = "countries.json";
       var yearSelectMenu = document.querySelector(".years");
@@ -185,7 +186,15 @@
         getTowns(selectedYear, d.properties.name, allVisitedCountries).subscribe(x => {
           let visitedTowns = x.towns;
 
+          //check if any other country has been zoomed in
+          if (centered !== null && centered !== d) {
+            document.getElementById(previouslyZoomedCountry).classList.remove("zoomed-in");
+            g.selectAll(".pin").data([]).exit().remove();
+          }
+          //check if the clicked on country has been zoomed in
           if (d && centered !== d && visitedCountries.includes(d.properties.name)) {
+            previouslyZoomedCountry = d.properties.name;
+            document.getElementById(d.properties.name).classList.add("zoomed-in");
             let bounds = pathGenerator.bounds(d);
             let widthC = bounds[1][0] - bounds[0][0];
             let heightC = bounds[1][1] - bounds[0][1];
@@ -225,6 +234,7 @@
             y = svgElemHeight / 2;
             k = 1;
             centered = null;
+            document.getElementById(previouslyZoomedCountry).classList.remove("zoomed-in");
             g.selectAll(".pin").data([]).exit().remove();
           }
 
