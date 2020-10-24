@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <title>World travels</title>
     <link rel="stylesheet/less" type="text/css" href="styles.less" />
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -32,8 +35,32 @@
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-header">
           <div class="sidebar-header-text">Travels of Siiri and Vootele</div>
-          <img class="sidebar-rounded-image" src="us.jpg" />
-          <img class="sidebar-bg-image" src="coconut_hill.jpg" />
+          <picture>
+            <source
+              class="sidebar-rounded-image"
+              type="image/webp"
+              srcset="us.webp"
+            />
+            <source
+              class="sidebar-rounded-image"
+              type="image/jpeg"
+              srcset="us.jpg"
+            />
+            <img class="sidebar-rounded-image" src="us.jpg" />
+          </picture>
+          <picture>
+            <source
+              class="sidebar-bg-image"
+              type="image/webp"
+              srcset="coconut_hill.webp"
+            />
+            <source
+              class="sidebar-bg-image"
+              type="image/jpeg"
+              srcset="coconut_hill.jpg"
+            />
+            <img class="sidebar-bg-image" src="coconut_hill.jpg" />
+          </picture>
         </div>
         <div class="sidebar-menu">
           <ul>
@@ -78,7 +105,11 @@
       var yearSelectMenu = document.querySelector(".years");
       var themeSelectMenu = document.querySelector(".themes");
       var selectedYear = setCurrentYear();
-      var label = d3.select("body").append("div").attr("class", "label").style("opacity", 0);
+      var label = d3
+        .select("body")
+        .append("div")
+        .attr("class", "label")
+        .style("opacity", 0);
       var svgElement = document.querySelector(".mapSvg");
       var collapseBtn = document.querySelector(".collapse-btn");
       var sideBar = document.querySelector(".sidebar-wrapper");
@@ -86,12 +117,12 @@
       var projection = d3.geoMercator().center([20, 0]);
       var pathGenerator = d3.geoPath().projection(projection);
 
-      d3.xml(svgIconName).then(data => {
+      d3.xml(svgIconName).then((data) => {
         pinIcon = data.documentElement;
       });
 
       function getVisitedCountries() {
-        return fetch(countriesFileName).then(response => response.json());
+        return fetch(countriesFileName).then((response) => response.json());
       }
 
       function setCurrentYear() {
@@ -109,17 +140,19 @@
         this.toggleSideNavigation();
       });
 
-      fromEvent(yearSelectMenu, "click").subscribe(event => {
+      fromEvent(yearSelectMenu, "click").subscribe((event) => {
         let svgElem = document.querySelector("svg");
         let cloneSvgElem = svgElem.cloneNode(false);
         svgElem.parentNode.replaceChild(cloneSvgElem, svgElem);
-        document.querySelector(".years .selectedMenuItem").classList.remove("selectedMenuItem");
+        document
+          .querySelector(".years .selectedMenuItem")
+          .classList.remove("selectedMenuItem");
         selectedYear = event.target.textContent;
         event.target.classList.add("selectedMenuItem");
         loadMapWithFilteredCountries();
       });
 
-      fromEvent(themeSelectMenu, "click").subscribe(event => {
+      fromEvent(themeSelectMenu, "click").subscribe((event) => {
         let theme = event.target.textContent;
         if (theme === "Blue") {
           less.modifyVars({
@@ -134,16 +167,23 @@
             "@base": "#eae485",
           });
         }
-        document.querySelector(".themes .selectedMenuItem").classList.remove("selectedMenuItem");
+        document
+          .querySelector(".themes .selectedMenuItem")
+          .classList.remove("selectedMenuItem");
         event.target.classList.add("selectedMenuItem");
       });
 
       function getTowns(year, country, visitedCountries) {
-        return from(visitedCountries).pipe(filter(entry => entry.year == year && entry.country == country && entry.towns));
+        return from(visitedCountries).pipe(
+          filter(
+            (entry) =>
+              entry.year == year && entry.country == country && entry.towns
+          )
+        );
       }
 
       function filterVisitedCountriesByYear(year, data) {
-        return from(data).pipe(filter(country => country.year == year));
+        return from(data).pipe(filter((country) => country.year == year));
       }
 
       function loadMap(visitedCountries) {
@@ -155,7 +195,9 @@
           .attr("class", "sphere")
           .attr("d", pathGenerator({ type: "Sphere" }));
 
-        d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(data => {
+        d3.json(
+          "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+        ).then((data) => {
           //converts TopoJSON to GeoJSON feature
           const countries = topojson.feature(data, data.objects.countries);
           console.log(countries);
@@ -172,29 +214,43 @@
             .classed("visited", function (d) {
               return visitedCountries.includes(d.properties.name);
             })
-            .attr("d", d => pathGenerator(d))
-            .on("click", d => clicked(d, visitedCountries));
+            .attr("d", (d) => pathGenerator(d))
+            .on("click", (d) => clicked(d, visitedCountries));
         });
       }
 
       function clicked(d, visitedCountries) {
         //dividing it because the world map is "zoomed in" with viewBox. Width of viewBox is about 1.5 smaller than width of Viewport
-        let svgElemWidth = svgContainer.offsetWidth / (svgContainer.offsetWidth / 850);
-        let svgElemHeight = svgContainer.offsetHeight / (svgContainer.offsetHeight / 425);
+        let svgElemWidth =
+          svgContainer.offsetWidth / (svgContainer.offsetWidth / 850);
+        let svgElemHeight =
+          svgContainer.offsetHeight / (svgContainer.offsetHeight / 425);
         let x, y, k;
 
-        getTowns(selectedYear, d.properties.name, allVisitedCountries).subscribe(x => {
+        getTowns(
+          selectedYear,
+          d.properties.name,
+          allVisitedCountries
+        ).subscribe((x) => {
           let visitedTowns = x.towns;
 
           //check if any other country has been zoomed in
           if (centered !== null && centered !== d) {
-            document.getElementById(previouslyZoomedCountry).classList.remove("zoomed-in");
+            document
+              .getElementById(previouslyZoomedCountry)
+              .classList.remove("zoomed-in");
             g.selectAll(".pin").data([]).exit().remove();
           }
           //check if the clicked on country has been zoomed in
-          if (d && centered !== d && visitedCountries.includes(d.properties.name)) {
+          if (
+            d &&
+            centered !== d &&
+            visitedCountries.includes(d.properties.name)
+          ) {
             previouslyZoomedCountry = d.properties.name;
-            document.getElementById(d.properties.name).classList.add("zoomed-in");
+            document
+              .getElementById(d.properties.name)
+              .classList.add("zoomed-in");
             let bounds = pathGenerator.bounds(d);
             let widthC = bounds[1][0] - bounds[0][0];
             let heightC = bounds[1][1] - bounds[0][1];
@@ -218,14 +274,24 @@
               .attr("y", function (d) {
                 return projection([d.longitude, d.latitude])[1] - s / k;
               })
-              .on("mouseover", d => {
+              .on("mouseover", (d) => {
                 label.transition().duration(200).style("opacity", 0.9);
                 label
-                  .text(d.town + ": " + d.startDate + " " + getMonthName(d.startMonth) + " - " + d.endDate + " " + getMonthName(d.endMonth))
+                  .text(
+                    d.town +
+                      ": " +
+                      d.startDate +
+                      " " +
+                      getMonthName(d.startMonth) +
+                      " - " +
+                      d.endDate +
+                      " " +
+                      getMonthName(d.endMonth)
+                  )
                   .style("left", d3.event.pageX + 10 + "px")
                   .style("top", d3.event.pageY + "px");
               })
-              .on("mouseout", d => {
+              .on("mouseout", (d) => {
                 label.transition().duration(500).style("opacity", 0);
               });
           } else {
@@ -234,7 +300,9 @@
             y = svgElemHeight / 2;
             k = 1;
             centered = null;
-            document.getElementById(previouslyZoomedCountry).classList.remove("zoomed-in");
+            document
+              .getElementById(previouslyZoomedCountry)
+              .classList.remove("zoomed-in");
             g.selectAll(".pin").data([]).exit().remove();
           }
 
@@ -242,7 +310,17 @@
             .duration(750)
             .attr(
               "transform",
-              "translate(" + svgElemWidth / 2 + ", " + svgElemHeight / 2 + ") scale(" + k + ") translate(" + -x + ", " + -y + ")"
+              "translate(" +
+                svgElemWidth / 2 +
+                ", " +
+                svgElemHeight / 2 +
+                ") scale(" +
+                k +
+                ") translate(" +
+                -x +
+                ", " +
+                -y +
+                ")"
             );
         });
       }
@@ -306,17 +384,21 @@
 
       function loadMapWithFilteredCountries() {
         let visitedFilteredByYear = [];
-        filterVisitedCountriesByYear(selectedYear, allVisitedCountries).subscribe({
-          next: data => {
+        filterVisitedCountriesByYear(
+          selectedYear,
+          allVisitedCountries
+        ).subscribe({
+          next: (data) => {
             console.log(data.country);
             visitedFilteredByYear.push(data.country);
           },
-          error: () => console.log("Error occurred during filtering countries by year"),
+          error: () =>
+            console.log("Error occurred during filtering countries by year"),
           complete: () => loadMap(visitedFilteredByYear),
         });
       }
 
-      getVisitedCountries().then(response => {
+      getVisitedCountries().then((response) => {
         allVisitedCountries = response;
         loadMapWithFilteredCountries();
       });
