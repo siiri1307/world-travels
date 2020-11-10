@@ -1,407 +1,417 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>World travels</title>
-    <link rel="stylesheet/less" type="text/css" href="styles.less" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
-    <script src="https://unpkg.com/@reactivex/rxjs@6.5.5/dist/global/rxjs.umd.js"></script>
-    <script type="text/javascript" src="d3.js"></script>
-    <script type="text/javascript" src="topojson.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <div class="page-wrapper">
-      <nav id="sidebar" class="sidebar-wrapper">
-        <div class="sidebar-header">
-          <div class="sidebar-header-text">Travels of Siiri and Vootele</div>
-          <picture>
-            <source
-              class="sidebar-rounded-image"
-              type="image/webp"
-              srcset="us.webp"
-            />
-            <source
-              class="sidebar-rounded-image"
-              type="image/jpeg"
-              srcset="us.jpg"
-            />
-            <img class="sidebar-rounded-image" src="us.jpg" />
-          </picture>
-          <picture>
-            <source
-              class="sidebar-bg-image"
-              type="image/webp"
-              srcset="coconut_hill.webp"
-            />
-            <source
-              class="sidebar-bg-image"
-              type="image/jpeg"
-              srcset="coconut_hill.jpg"
-            />
-            <img class="sidebar-bg-image" src="coconut_hill.jpg" />
-          </picture>
-        </div>
-        <div class="sidebar-menu">
-          <ul>
-            <li class="sidebar-dropdown">
-              <div class="year">Year</div>
-              <div class="sidebar-submenu">
-                <ul class="years">
-                  <li>2016</li>
-                  <li>2017</li>
-                  <li>2018</li>
-                  <li>2019</li>
-                  <li>2020</li>
-                </ul>
-              </div>
-            </li>
 
-            <li class="sidebar-dropdown">
-              <div class="theme">Theme</div>
-              <div class="sidebar-submenu">
-                <ul class="themes">
-                  <li>Blue</li>
-                  <li class="selectedMenuItem">Default</li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="copyright">Copyright &copy;2020 All rights reserved</div>
-      </nav>
-      <img class="collapse-btn" src="right-arrow.svg" />
-      <div class="svgContainer">
-        <svg class="mapSvg"></svg>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1" charset="utf-8" />
+  <title>World travels</title>
+  <link rel="stylesheet/less" type="text/css" href="styles.less" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&family=Lobster&family=Roboto+Slab:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+  <script src="https://unpkg.com/@reactivex/rxjs@6.5.5/dist/global/rxjs.umd.js"></script>
+  <script type="text/javascript" src="d3.js"></script>
+  <script type="text/javascript" src="topojson.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-header">
+        <div class="sidebar-header-text">Travels of Siiri and Vootele</div>
+        <picture>
+          <source media="(min-width: 601px)" class="sidebar-rounded-image" type="image/webp" srcset="us.webp" />
+          <source media="(min-width: 601px)" class="sidebar-rounded-image" type="image/jpeg" srcset="us.jpg" />
+          <img src="us.jpg" class="sidebar-rounded-image" />
+        </picture>
+        <picture>
+          <source media="(min-width: 601px)" class="sidebar-bg-image" type="image/webp" srcset="coconut_hill.webp" />
+          <source media="(min-width: 601px)" class="sidebar-bg-image" type="image/jpeg" srcset="coconut_hill.jpg" />
+          <img class="sidebar-bg-image" src="coconut_hill.jpg" />
+        </picture>
       </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="sidebar-dropdown">
+            <div class="year">Year</div>
+            <div class="sidebar-submenu">
+              <ul class="years">
+                <li>2016</li>
+                <li>2017</li>
+                <li>2018</li>
+                <li>2019</li>
+                <li>2020</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="sidebar-dropdown">
+            <div class="theme">Theme</div>
+            <div class="sidebar-submenu">
+              <ul class="themes">
+                <li>Blue</li>
+                <li class="selectedMenuItem">Default</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="copyright">Copyright &copy;2020 All rights reserved</div>
+      </div>
+    </nav>
+
+    <div class="svgContainer">
+      <img class="collapse-btn" src="right-arrow.svg" />
+      <svg class="mapSvg"></svg>
     </div>
-    <script>
-      const { map, filter } = rxjs.operators;
-      const { from, pipe, fromEvent } = rxjs;
-      var svg, g, allVisitedCountries, pinIcon, previouslyZoomedCountry;
-      var centered = null;
-      var svgIconName = "pin_colored_circle.svg";
-      var countriesFileName = "countries.json";
-      var yearSelectMenu = document.querySelector(".years");
-      var themeSelectMenu = document.querySelector(".themes");
-      var selectedYear = setCurrentYear();
-      var label = d3
-        .select("body")
-        .append("div")
-        .attr("class", "label")
-        .style("opacity", 0);
-      var svgElement = document.querySelector(".mapSvg");
-      var collapseBtn = document.querySelector(".collapse-btn");
-      var sideBar = document.querySelector(".sidebar-wrapper");
-      var svgContainer = document.querySelector(".svgContainer");
-      var projection = d3.geoMercator().center([20, 0]);
-      var pathGenerator = d3.geoPath().projection(projection);
+  </div>
+  <script>
+    const { map, filter } = rxjs.operators;
+    const { from, pipe, fromEvent } = rxjs;
+    var svg, g, allVisitedCountries, pinIcon, previouslyZoomedCountry, scaleFactor = 1;
+    var centered = null;
+    var svgIconName = "pin_colored_circle.svg";
+    var countriesFileName = "countries.json";
+    var yearSelectMenu = document.querySelector(".years");
+    var themeSelectMenu = document.querySelector(".themes");
+    var selectedYear = setCurrentYear();
+    var label = d3
+      .select("body")
+      .append("div")
+      .attr("class", "label")
+      .style("opacity", 0);
+    var svgElement = document.querySelector(".mapSvg");
+    var collapseBtn = document.querySelector(".collapse-btn");
+    var sideBar = document.querySelector(".sidebar-wrapper");
+    var svgContainer = document.querySelector(".svgContainer");
+    var projection = d3.geoMercator().center([20, 0]);
+    var pathGenerator = d3.geoPath().projection(projection);
 
-      d3.xml(svgIconName).then((data) => {
-        pinIcon = data.documentElement;
-      });
+    d3.xml(svgIconName).then((data) => {
+      pinIcon = data.documentElement;
+    });
 
-      function getVisitedCountries() {
-        return fetch(countriesFileName).then((response) => response.json());
-      }
+    function getVisitedCountries() {
+      return fetch(countriesFileName).then((response) => response.json());
+    }
 
-      function setCurrentYear() {
-        let optionsNodeList = document.querySelectorAll(".years li");
+    function setCurrentYear() {
+      let optionsNodeList = document.querySelectorAll(".years li");
 
-        for (let option of optionsNodeList) {
-          if (option.textContent == new Date().getFullYear()) {
-            option.classList.add("selectedMenuItem");
-            return option.textContent;
-          }
+      for (let option of optionsNodeList) {
+        if (option.textContent == new Date().getFullYear()) {
+          option.classList.add("selectedMenuItem");
+          return option.textContent;
         }
       }
+    }
 
-      fromEvent(collapseBtn, "click").subscribe(() => {
-        this.toggleSideNavigation();
-      });
+    fromEvent(collapseBtn, "click").subscribe(() => {
+      this.toggleSideNavigation();
+    });
 
-      fromEvent(yearSelectMenu, "click").subscribe((event) => {
-        let svgElem = document.querySelector("svg");
-        let cloneSvgElem = svgElem.cloneNode(false);
-        svgElem.parentNode.replaceChild(cloneSvgElem, svgElem);
-        document
-          .querySelector(".years .selectedMenuItem")
-          .classList.remove("selectedMenuItem");
-        selectedYear = event.target.textContent;
-        event.target.classList.add("selectedMenuItem");
-        loadMapWithFilteredCountries();
-      });
+    fromEvent(yearSelectMenu, "click").subscribe((event) => {
+      let svgElem = document.querySelector("svg");
+      let cloneSvgElem = svgElem.cloneNode(false);
+      svgElem.parentNode.replaceChild(cloneSvgElem, svgElem);
+      document
+        .querySelector(".years .selectedMenuItem")
+        .classList.remove("selectedMenuItem");
+      selectedYear = event.target.textContent;
+      event.target.classList.add("selectedMenuItem");
+      loadMapWithFilteredCountries();
+    });
 
-      fromEvent(themeSelectMenu, "click").subscribe((event) => {
-        let theme = event.target.textContent;
-        if (theme === "Blue") {
-          less.modifyVars({
-            "@countryColor": "#f9f8de",
-            "@sideNavigationColor": "desaturate(@countryColor, 10%)",
-            "@sphereColor": "#85eae9",
-            "@visitedCountryColor": "darken(@countryColor, 17%)",
-            "@selectedMenuItemBgColor": "darken(@countryColor, 10%)",
-          });
-        } else if (theme === "Default") {
-          less.modifyVars({
-            "@base": "#eae485",
-          });
-        }
-        document
-          .querySelector(".themes .selectedMenuItem")
-          .classList.remove("selectedMenuItem");
-        event.target.classList.add("selectedMenuItem");
-      });
-
-      function getTowns(year, country, visitedCountries) {
-        return from(visitedCountries).pipe(
-          filter(
-            (entry) =>
-              entry.year == year && entry.country == country && entry.towns
-          )
-        );
-      }
-
-      function filterVisitedCountriesByYear(year, data) {
-        return from(data).pipe(filter((country) => country.year == year));
-      }
-
-      function loadMap(visitedCountries) {
-        svg = d3.select(".mapSvg").attr("viewBox", "0 0 850 425");
-
-        g = svg.append("g");
-
-        g.append("path")
-          .attr("class", "sphere")
-          .attr("d", pathGenerator({ type: "Sphere" }));
-
-        d3.json(
-          "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
-        ).then((data) => {
-          //converts TopoJSON to GeoJSON feature
-          const countries = topojson.feature(data, data.objects.countries);
-          console.log(countries);
-
-          const paths = g
-            .selectAll("path")
-            .data(countries.features)
-            .enter()
-            .append("path")
-            .attr("class", "country")
-            .attr("id", function (d) {
-              return d.properties.name;
-            })
-            .classed("visited", function (d) {
-              return visitedCountries.includes(d.properties.name);
-            })
-            .attr("d", (d) => pathGenerator(d))
-            .on("click", (d) => clicked(d, visitedCountries));
+    fromEvent(themeSelectMenu, "click").subscribe((event) => {
+      let theme = event.target.textContent;
+      if (theme === "Blue") {
+        less.modifyVars({
+          "@countryColor": "#f9f8de",
+          "@sideNavigationColor": "desaturate(@countryColor, 10%)",
+          "@sphereColor": "#85eae9",
+          "@visitedCountryColor": "darken(@countryColor, 17%)",
+          "@selectedMenuItemBgColor": "darken(@countryColor, 10%)",
+        });
+      } else if (theme === "Default") {
+        less.modifyVars({
+          "@base": "#eae485",
         });
       }
+      document
+        .querySelector(".themes .selectedMenuItem")
+        .classList.remove("selectedMenuItem");
+      event.target.classList.add("selectedMenuItem");
+    });
 
-      function clicked(d, visitedCountries) {
-        //dividing it because the world map is "zoomed in" with viewBox. Width of viewBox is about 1.5 smaller than width of Viewport
-        let svgElemWidth =
-          svgContainer.offsetWidth / (svgContainer.offsetWidth / 850);
-        let svgElemHeight =
-          svgContainer.offsetHeight / (svgContainer.offsetHeight / 425);
-        let x, y, k;
+    function getTowns(year, country, visitedCountries) {
+      return from(visitedCountries).pipe(
+        filter(
+          (entry) =>
+            entry.year == year && entry.country == country && entry.towns
+        )
+      );
+    }
 
-        getTowns(
-          selectedYear,
-          d.properties.name,
-          allVisitedCountries
-        ).subscribe((x) => {
-          let visitedTowns = x.towns;
+    function filterVisitedCountriesByYear(year, data) {
+      return from(data).pipe(filter((country) => country.year == year));
+    }
 
-          //check if any other country has been zoomed in
-          if (centered !== null && centered !== d) {
-            document
-              .getElementById(previouslyZoomedCountry)
-              .classList.remove("zoomed-in");
-            g.selectAll(".pin").data([]).exit().remove();
-          }
-          //check if the clicked on country has been zoomed in
-          if (
-            d &&
-            centered !== d &&
-            visitedCountries.includes(d.properties.name)
-          ) {
-            previouslyZoomedCountry = d.properties.name;
-            document
-              .getElementById(d.properties.name)
-              .classList.add("zoomed-in");
-            let bounds = pathGenerator.bounds(d);
-            let widthC = bounds[1][0] - bounds[0][0];
-            let heightC = bounds[1][1] - bounds[0][1];
-            x = (bounds[0][0] + bounds[1][0]) / 2;
-            y = (bounds[0][1] + bounds[1][1]) / 2;
-            k = Math.min(svgElemWidth / widthC, svgElemHeight / heightC);
-            centered = d;
-
-            let s = 27;
-
-            g.selectAll(".pin")
-              .data(visitedTowns)
-              .enter()
-              .append(() => pinIcon.cloneNode(true))
-              .attr("class", "pin")
-              .attr("height", s / k + "px")
-              .attr("width", s / k + "px")
-              .attr("x", function (d) {
-                return projection([d.longitude, d.latitude])[0] - s / k / 2;
-              })
-              .attr("y", function (d) {
-                return projection([d.longitude, d.latitude])[1] - s / k;
-              })
-              .on("mouseover", (d) => {
-                label.transition().duration(200).style("opacity", 0.9);
-                label
-                  .text(
-                    d.town +
-                      ": " +
-                      d.startDate +
-                      " " +
-                      getMonthName(d.startMonth) +
-                      " - " +
-                      d.endDate +
-                      " " +
-                      getMonthName(d.endMonth)
-                  )
-                  .style("left", d3.event.pageX + 10 + "px")
-                  .style("top", d3.event.pageY + "px");
-              })
-              .on("mouseout", (d) => {
-                label.transition().duration(500).style("opacity", 0);
-              });
+    function loadMap(visitedCountries) {
+      svg = d3
+        .select(".mapSvg")
+        .attr("viewBox", (d) => {
+          if (window.innerWidth < 601) {
+            return "30 -200 900 725";
           } else {
-            //reset to world view
-            x = svgElemWidth / 2;
-            y = svgElemHeight / 2;
-            k = 1;
-            centered = null;
-            document
-              .getElementById(previouslyZoomedCountry)
-              .classList.remove("zoomed-in");
-            g.selectAll(".pin").data([]).exit().remove();
+            return "0 0 850 425";
           }
+        })
+        .attr("width", "100%")
+        .attr("preserveAspectRatio", "xMaxYMid slice");
 
-          g.transition()
-            .duration(750)
-            .attr(
-              "transform",
-              "translate(" +
-                svgElemWidth / 2 +
-                ", " +
-                svgElemHeight / 2 +
-                ") scale(" +
-                k +
-                ") translate(" +
-                -x +
-                ", " +
-                -y +
-                ")"
-            );
+      g = svg.append("g")
+        .attr("transform", (d) => {
+          if (window.innerWidth < 601) {
+            return "translate(-127.49, -63.74)scale(1.3, 1.3)";
+          }
         });
-      }
 
-      function getMonthName(number) {
-        switch (number) {
-          case 1:
-            return "Jan";
-          case 2:
-            return "Feb";
-          case 3:
-            return "Mar";
-          case 4:
-            return "Apr";
-          case 5:
-            return "May";
-          case 6:
-            return "Jun";
-          case 7:
-            return "Jul";
-          case 8:
-            return "Aug";
-          case 9:
-            return "Sept";
-          case 10:
-            return "Oct";
-          case 11:
-            return "Nov";
-          case 12:
-            return "Dec";
-        }
-      }
+      g.append("path")
+        .attr("class", "sphere")
+        .attr("d", pathGenerator({ type: "Sphere" }))
 
-      $(".sidebar-dropdown > div:first-child").click(function () {
-        $(".sidebar-submenu").slideUp(200);
-        if ($(this).parent().hasClass("active")) {
-          $(".sidebar-dropdown").removeClass("active");
-          $(this).parent().removeClass("active");
-        } else {
-          $(".sidebar-dropdown").removeClass("active");
-          $(this).next(".sidebar-submenu").slideDown(200);
-          $(this).parent().addClass("active");
-        }
+
+      d3.json(
+        "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+      ).then((data) => {
+        //converts TopoJSON to GeoJSON feature
+        const countries = topojson.feature(data, data.objects.countries);
+
+        const paths = g
+          .selectAll("path")
+          .data(countries.features)
+          .enter()
+          .append("path")
+          .attr("class", "country")
+          .attr("id", function (d) {
+            return d.properties.name;
+          })
+          .classed("visited", function (d) {
+            return visitedCountries.includes(d.properties.name);
+          })
+          .attr("d", (d) => pathGenerator(d))
+          .on("click", (d) => clicked(d, visitedCountries));
       });
+    }
 
-      function toggleSideNavigation() {
-        if (sideBar.offsetWidth == 0) {
-          sideBar.style.width = "20vw";
-          svgContainer.style.width = "80vw";
-          document.querySelector(".svgContainer").style.marginLeft = "20vw";
-          collapseBtn.style.left = "20vw";
-          collapseBtn.style.transform = "rotate(180deg)";
-        } else {
-          sideBar.style.width = "0vw";
-          svgContainer.style.width = "100vw";
-          document.querySelector(".svgContainer").style.marginLeft = "0vw";
-          collapseBtn.style.transform = "rotate(360deg)";
-          collapseBtn.style.left = "0vw";
+    function clicked(d, visitedCountries) {
+      //dividing it because the world map is "zoomed in" with viewBox. Width of viewBox is about 1.5 smaller than width of Viewport
+      let svgElemWidth = svgContainer.offsetWidth / (svgContainer.offsetWidth / 850);
+      let svgElemHeight = svgContainer.offsetHeight / (svgContainer.offsetHeight / 425);
+      let x, y, k;
+
+      getTowns(
+        selectedYear,
+        d.properties.name,
+        allVisitedCountries
+      ).subscribe((x) => {
+        let visitedTowns = x.towns;
+
+        //check if any other country has been zoomed in
+        if (centered !== null && centered !== d) {
+          document
+            .getElementById(previouslyZoomedCountry)
+            .classList.remove("zoomed-in");
+          g.selectAll(".pin").data([]).exit().remove();
         }
-      }
+        //check if the clicked on country has been zoomed in
+        if (
+          d &&
+          centered !== d &&
+          visitedCountries.includes(d.properties.name)
+        ) {
+          previouslyZoomedCountry = d.properties.name;
+          document
+            .getElementById(d.properties.name)
+            .classList.add("zoomed-in");
+          let bounds = pathGenerator.bounds(d);
+          let widthC = bounds[1][0] - bounds[0][0];
+          let heightC = bounds[1][1] - bounds[0][1];
+          x = (bounds[0][0] + bounds[1][0]) / 2;
+          y = (bounds[0][1] + bounds[1][1]) / 2;
+          k = Math.min(svgElemWidth / widthC, svgElemHeight / heightC);
+          centered = d;
 
-      function loadMapWithFilteredCountries() {
-        let visitedFilteredByYear = [];
-        filterVisitedCountriesByYear(
-          selectedYear,
-          allVisitedCountries
-        ).subscribe({
-          next: (data) => {
-            console.log(data.country);
-            visitedFilteredByYear.push(data.country);
-          },
-          error: () =>
-            console.log("Error occurred during filtering countries by year"),
-          complete: () => loadMap(visitedFilteredByYear),
-        });
-      }
+          let s = 27;
 
-      getVisitedCountries().then((response) => {
-        allVisitedCountries = response;
-        loadMapWithFilteredCountries();
+          g.selectAll(".pin")
+            .data(visitedTowns)
+            .enter()
+            .append(() => pinIcon.cloneNode(true))
+            .attr("class", "pin")
+            .attr("height", s / k + "px")
+            .attr("width", s / k + "px")
+            .attr("x", function (d) {
+              return projection([d.longitude, d.latitude])[0] - s / k / 2;
+            })
+            .attr("y", function (d) {
+              return projection([d.longitude, d.latitude])[1] - s / k;
+            })
+            .on("mouseover", (d) => {
+              label.transition().duration(200).style("opacity", 0.9);
+              label
+                .text(
+                  d.town +
+                  ": " +
+                  d.startDate +
+                  " " +
+                  getMonthName(d.startMonth) +
+                  " - " +
+                  d.endDate +
+                  " " +
+                  getMonthName(d.endMonth)
+                )
+                .style("left", d3.event.pageX + 10 + "px")
+                .style("top", d3.event.pageY + "px");
+            })
+            .on("mouseout", (d) => {
+              label.transition().duration(500).style("opacity", 0);
+            });
+        } else {
+          //reset to world view
+          x = svgElemWidth / 2;
+          y = svgElemHeight / 2;
+          k = 1;
+          if (window.innerWidth < 601) {
+            k = 1.3;
+          }
+          centered = null;
+          document
+            .getElementById(previouslyZoomedCountry)
+            .classList.remove("zoomed-in");
+          g.selectAll(".pin").data([]).exit().remove();
+        }
+
+        g.transition()
+          .duration(750)
+          .attr(
+            "transform",
+            "translate(" +
+            svgElemWidth / 2 +
+            ", " +
+            svgElemHeight / 2 +
+            ") scale(" +
+            k +
+            ") translate(" +
+            -x +
+            ", " +
+            -y +
+            ")"
+          );
       });
-    </script>
-  </body>
+    }
+
+    function getMonthName(number) {
+      switch (number) {
+        case 1:
+          return "Jan";
+        case 2:
+          return "Feb";
+        case 3:
+          return "Mar";
+        case 4:
+          return "Apr";
+        case 5:
+          return "May";
+        case 6:
+          return "Jun";
+        case 7:
+          return "Jul";
+        case 8:
+          return "Aug";
+        case 9:
+          return "Sept";
+        case 10:
+          return "Oct";
+        case 11:
+          return "Nov";
+        case 12:
+          return "Dec";
+      }
+    }
+
+    $(".sidebar-dropdown > div:first-child").click(function () {
+      $(".sidebar-submenu").slideUp(200);
+      if ($(this).parent().hasClass("active")) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this).parent().removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this).next(".sidebar-submenu").slideDown(200);
+        $(this).parent().addClass("active");
+      }
+    });
+
+    function toggleSideNavigation() {
+      if (sideBar.offsetWidth == 0) {
+        sideBar.style.width = "20vw";
+        document.querySelector(".sidebar-wrapper").style.visibility =
+          "visible";
+        collapseBtn.style.left = "17vw";
+        collapseBtn.style.transform = "rotate(180deg)";
+      } else {
+        sideBar.style.width = "0vw";
+        collapseBtn.style.transform = "rotate(360deg)";
+        document.querySelector(".sidebar-wrapper").style.visibility =
+          "hidden";
+        collapseBtn.style.left = "0vw";
+      }
+    }
+
+    function loadMapWithFilteredCountries() {
+      let visitedFilteredByYear = [];
+      filterVisitedCountriesByYear(
+        selectedYear,
+        allVisitedCountries
+      ).subscribe({
+        next: (data) => {
+          visitedFilteredByYear.push(data.country);
+        },
+        error: () =>
+          console.log("Error occurred during filtering countries by year"),
+        complete: () => loadMap(visitedFilteredByYear),
+      });
+    }
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 601) {
+        document
+          .querySelector("svg")
+          .setAttribute("viewBox", "30 -200 900 725");
+        document
+          .querySelector("g")
+          .setAttribute("transform", "translate(-127.49, -63.74)scale(1.3, 1.3)");
+      } else {
+        document.querySelector("svg").setAttribute("viewBox", "0 0 850 425");
+        document
+          .querySelector("g")
+          .setAttribute("transform", "scale(1, 1)");
+      }
+    });
+
+    getVisitedCountries().then((response) => {
+      allVisitedCountries = response;
+      loadMapWithFilteredCountries();
+    });
+  </script>
+</body>
+
 </html>
