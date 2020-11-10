@@ -1,7 +1,7 @@
 @base: #eae485;
 @countryColor: lighten(@base, 8%);
 @sphereColor: lighten(@base, 23%);
-@font: "Lato", sans-serif;
+@font: 'Cormorant', serif;
 @visitedCountryColor: darken(@base, 17%);
 @sideNavigationColor: darken(@base, 20%);
 @selectedMenuItemBgColor: darken(@base, 5%);
@@ -25,6 +25,10 @@ body {
     height: 100vh;
     position: relative;
     overflow: hidden;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
 
     .sphere {
       fill: @sphereColor;
@@ -52,84 +56,97 @@ body {
 
     .svgContainer {
       width: 100vw;
-      height: 100vh;
-      position: relative;
+      display: flex;
       transition: margin-left 0.1s;
 
-      .mapSvg {
-        width: 100%;
-        height: 100%;
+      @media screen and (max-width: 600px) {
+        order: 1;
+      }
+
+      .collapse-btn {
+        z-index: 2;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin-left: 3px;
+        margin-top: 3px;
+
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
       }
     }
 
-    .collapse-btn {
-      z-index: 2;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      margin-left: 3px;
-      margin-top: 3px;
-    }
-
     .sidebar-wrapper {
+      visibility: hidden;
       @textColor: #654321;
-      @leftPadding: 20px;
+      @sideBarItemPadding: 20px;
       background: @sideNavigationColor;
       width: 0vw;
       height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
       transition: 0.1s;
-      font-family: monospace;
-      font-size: 15px;
+      overflow: hidden;
+
+      @media (max-width: 600px) {
+        visibility: visible;
+        order: 2;
+        min-width: 100%;
+        overflow-y: scroll;
+      }
+      
+      @media screen and (max-height: 370px) {
+        overflow-y: scroll;
+      }
 
       .sidebar-header {
-        height: 180px;
-        width: 100%;
+        height: 22%;
         position: relative;
-        display: flex;
-        justify-content: center;
+      
+        @media screen and (max-width: 600px), screen and (max-height: 370px) {
+          display: none;
+        }
 
         .sidebar-rounded-image {
           position: absolute;
           border-radius: 50%;
-          top: 2vh;
-          width: 110px;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -40%);
+          width: 40%;
         }
 
         .sidebar-header-text {
           display: inline-block;
           white-space: nowrap;
           position: absolute;
-          bottom: 4%;
+          bottom: 1%;
           left: 50%;
-          transform: translate(-50%, -4%);
+          transform: translate(-50%, -1%);
           color: lighten(@base, 23%);
-          font-family: monospace;
-          font-weight: bold;
+          font-weight: 800;
+          font-size: calc(0.1em + 1.2vw);
         }
 
         .sidebar-bg-image {
           width: 100%;
-          height: 180px;
+          height: 100%;
         }
       }
 
       .sidebar-menu {
+        font-size: 1em;
+        color: @textColor;
         ul {
           padding-left: 0px;
-          list-style-type: none;
-          color: @textColor;
+          margin-bottom: 0px;
           li {
             display: inline-block;
             width: 100%;
             text-decoration: none;
-            @rightPadding: @leftPadding;
-            padding: 8px @rightPadding 8px @leftPadding;
+            padding: 8px @sideBarItemPadding 8px @sideBarItemPadding;
             border-bottom: 0.1px solid @textColor;
             cursor: pointer;
 
@@ -149,11 +166,10 @@ body {
             }
           }
         }
-      }
-
-      .copyright {
-        padding-left: @leftPadding;
-        color: @textColor;
+        
+        .copyright {
+          padding: 8px @sideBarItemPadding 8px @sideBarItemPadding;
+        }
       }
     }
   }
