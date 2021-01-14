@@ -50,6 +50,7 @@
                 <li>2018</li>
                 <li>2019</li>
                 <li>2020</li>
+                <li>2021</li>
               </ul>
             </div>
           </li>
@@ -75,7 +76,7 @@
   </div>
   <script>
     const { map, filter } = rxjs.operators;
-    const { from, pipe, fromEvent } = rxjs;
+    const { from, pipe, fromEvent, Observable } = rxjs;
     var svg, g, allVisitedCountries, pinIcon, previouslyZoomedCountry, scaleFactor = 1;
     var centered = null;
     var svgIconName = "pin_colored_circle.svg";
