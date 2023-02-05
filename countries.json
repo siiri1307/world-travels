@@ -32,7 +32,6 @@
       }
     ]
   },
-
   {
     "year": 2016,
     "country": "Austria",
@@ -48,7 +47,6 @@
       }
     ]
   },
-
   {
     "year": 2016,
     "country": "Germany",
@@ -64,7 +62,6 @@
       }
     ]
   },
-
   {
     "year": 2017,
     "country": "China",
@@ -98,7 +95,6 @@
       }
     ]
   },
-
   {
     "year": 2017,
     "country": "Vietnam",
@@ -150,7 +146,6 @@
       }
     ]
   },
-
   {
     "year": 2017,
     "country": "Cambodia",
@@ -175,7 +170,6 @@
       }
     ]
   },
-
   {
     "year": 2017,
     "changeOfYear": true,
@@ -201,7 +195,6 @@
       }
     ]
   },
-
   {
     "year": 2017,
     "country": "Spain",
@@ -217,7 +210,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Sri Lanka",
@@ -251,7 +243,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Thailand",
@@ -267,7 +258,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Malaysia",
@@ -292,7 +282,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Singapore",
@@ -308,7 +297,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Taiwan",
@@ -342,7 +330,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Japan",
@@ -385,7 +372,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Austria",
@@ -401,7 +387,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Switzerland",
@@ -417,7 +402,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Cyprus",
@@ -433,7 +417,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "country": "Costa Rica",
@@ -467,7 +450,6 @@
       }
     ]
   },
-
   {
     "year": 2018,
     "changeOfYear": true,
@@ -484,7 +466,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "Peru",
@@ -536,7 +517,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "Chile",
@@ -561,7 +541,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "Uruguay",
@@ -595,7 +574,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "Argentina",
@@ -638,7 +616,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "Spain",
@@ -654,7 +631,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "United Arab Emirates",
@@ -670,7 +646,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "country": "Sri Lanka",
@@ -686,7 +661,6 @@
       }
     ]
   },
-
   {
     "year": 2019,
     "changeOfYear": true,
@@ -703,7 +677,6 @@
       }
     ]
   },
-
   {
     "year": 2020,
     "country": "Philippines",
@@ -764,7 +737,6 @@
       }
     ]
   },
-
   {
     "year": 2020,
     "country": "Vietnam",
@@ -807,7 +779,6 @@
       }
     ]
   },
-
   {
     "year": 2020,
     "country": "Indonesia",
@@ -820,6 +791,49 @@
         "startMonth": 3,
         "endDate": 19,
         "endMonth": 3
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "country": "Singapore",
+    "towns": [
+      {
+        "town": "Singapore",
+        "latitude": 1.28967,
+        "longitude": 103.85007,
+        "startDate": 29,
+        "startMonth": 1,
+        "endDate": 1,
+        "endMonth": 2
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "country": "Malaysia",
+    "towns": [
+      {
+        "town": "Sepang",
+        "latitude": 2.759414,
+        "longitude": 101.731778,
+        "startDate": 1,
+        "startMonth": 2,
+        "endDate": 3,
+        "endMonth": 2
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "country": "Vietnam",
+    "towns": [
+      {
+        "town": "Hoi An",
+        "latitude": 15.87944,
+        "longitude": 108.335,
+        "startDate": 3,
+        "startMonth": 2
       }
     ]
   }
