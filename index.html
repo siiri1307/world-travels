@@ -193,7 +193,7 @@
 
 
       d3.json(
-        "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+        "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json"
       ).then((data) => {
         //converts TopoJSON to GeoJSON feature
         const countries = topojson.feature(data, data.objects.countries);
