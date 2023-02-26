@@ -863,7 +863,36 @@
         "latitude": 15.87944,
         "longitude": 108.335,
         "startDate": 3,
-        "startMonth": 2
+        "startMonth": 2,
+        "endDate": 20,
+        "endMonth": 2
+      },
+      {
+        "town": "Cát Bà",
+        "latitude": 20.731819,
+        "longitude": 107.047600,
+        "startDate": 20,
+        "startMonth": 2,
+        "endDate": 25,
+        "endMonth": 2
+      },
+      {
+        "town": "Cát Bà",
+        "latitude": 20.731819,
+        "longitude": 107.047600,
+        "startDate": 20,
+        "startMonth": 2,
+        "endDate": 25,
+        "endMonth": 2
+      },
+      {
+        "town": "Hanoi",
+        "latitude": 21.0245,
+        "longitude": 105.84117,
+        "startDate": 26,
+        "startMonth": 2,
+        "endDate": 27,
+        "endMonth": 2
       }
     ]
   }
