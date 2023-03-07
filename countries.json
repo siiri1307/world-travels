@@ -248,7 +248,7 @@
     "country": "Thailand",
     "towns": [
       {
-        "town": "Ko Lanta",
+        "town": "Koh Lanta",
         "latitude": 7.65,
         "longitude": 99.1,
         "startDate": 11,
@@ -877,15 +877,6 @@
         "endMonth": 2
       },
       {
-        "town": "Cát Bà",
-        "latitude": 20.731819,
-        "longitude": 107.047600,
-        "startDate": 20,
-        "startMonth": 2,
-        "endDate": 25,
-        "endMonth": 2
-      },
-      {
         "town": "Hanoi",
         "latitude": 21.0245,
         "longitude": 105.84117,
@@ -893,6 +884,28 @@
         "startMonth": 2,
         "endDate": 27,
         "endMonth": 2
+      },
+      {
+        "town": "Đà Lạt",
+        "latitude": 11.936220,
+        "longitude": 108.445236,
+        "startDate": 27,
+        "startMonth": 2,
+        "endDate": 5,
+        "endMonth": 3
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "country": "Thailand",
+    "towns": [
+      {
+        "town": "Koh Samui",
+        "latitude": 9.536070,
+        "longitude": 99.936172,
+        "startDate": 6,
+        "startMonth": 3
       }
     ]
   }
