@@ -1067,7 +1067,36 @@
         "latitude": 39.466667,
         "longitude": -0.375000,
         "startDate": 4,
-        "startMonth": 10
+        "startMonth": 10,
+        "endDate": 10,
+        "endMonth": 12
+      },
+      {
+        "town": "Dénia",
+        "latitude": 38.840401,
+        "longitude": 0.108640,
+        "startDate": 18,
+        "startMonth": 11,
+        "endDate": 18,
+        "endMonth": 11
+      },
+      {
+        "town": "Busot",
+        "latitude": 38.484829,
+        "longitude": -0.417270,
+        "startDate": 18,
+        "startMonth": 11,
+        "endDate": 19,
+        "endMonth": 11
+      },
+      {
+        "town": "Calp",
+        "latitude": 38.646599,
+        "longitude": 0.045700,
+        "startDate": 19,
+        "startMonth": 11,
+        "endDate": 19,
+        "endMonth": 11
       }
     ]
   }
