@@ -1099,5 +1099,20 @@
         "endMonth": 11
       }
     ]
+  },
+  {
+    "year": 2024,
+    "country": "Czechia",
+    "towns": [
+      {
+        "town": "Prague",
+        "latitude": 50.073658,
+        "longitude": 14.418540,
+        "startDate": 1,
+        "startMonth": 5,
+        "endDate": 5,
+        "endMonth": 5
+      }
+    ]
   }
 ]
