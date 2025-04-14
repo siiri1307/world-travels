@@ -1114,5 +1114,266 @@
         "endMonth": 5
       }
     ]
+  },
+  {
+    "year": 2024,
+    "country": "Austria",
+    "towns": [
+      {
+        "town": "Mondsee",
+        "latitude": 47.855389,
+        "longitude": 13.350200,
+        "startDate": 26,
+        "startMonth": 9,
+        "endDate": 27,
+        "endMonth": 9
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "country": "Italy",
+    "towns": [
+      {
+        "town": "Casole d'Elsa",
+        "latitude": 43.340785,
+        "longitude": 11.043816,
+        "startDate": 28,
+        "startMonth": 9,
+        "endDate": 29,
+        "endMonth": 10
+      },
+      {
+        "town": "Montepulciano",
+        "latitude": 43.0945279,
+        "longitude": 11.7826795,
+        "startDate": 5,
+        "startMonth": 10,
+        "endDate": 5,
+        "endMonth": 10
+      },
+      {
+        "town": "Florence",
+        "latitude": 43.7697955,
+        "longitude": 11.2556404,
+        "startDate": 12,
+        "startMonth": 10,
+        "endDate": 12,
+        "endMonth": 10
+      },
+      {
+        "town": "Volterra",
+        "latitude": 43.400337,
+        "longitude": 10.860019,
+        "startDate": 13,
+        "startMonth": 10,
+        "endDate": 13,
+        "endMonth": 10
+      },
+      {
+        "town": "Pisa",
+        "latitude": 43.4714722,
+        "longitude": 10.6797912,
+        "startDate": 29,
+        "startMonth": 10,
+        "endDate": 29,
+        "endMonth": 10
+      },
+      {
+        "town": "Portofino",
+        "latitude": 44.3036653,
+        "longitude": 9.2093446,
+        "startDate": 30,
+        "startMonth": 10,
+        "endDate": 30,
+        "endMonth": 10
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "country": "Monaco",
+    "towns": [
+      {
+        "town": "Monaco",
+        "latitude": 43.7323492,
+        "longitude": 7.4276832,
+        "startDate": 31,
+        "startMonth": 10,
+        "endDate": 31,
+        "endMonth": 10
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "country": "France",
+    "towns": [
+      {
+        "town": "Nice",
+        "latitude": 43.7009358,
+        "longitude": 7.2683912,
+        "startDate": 1,
+        "startMonth": 11,
+        "endDate": 2,
+        "endMonth": 11
+      },
+      {
+        "town": "Roumoules",
+        "latitude": 43.8258394,
+        "longitude": 6.1298863,
+        "startDate": 2,
+        "startMonth": 11,
+        "endDate": 3,
+        "endMonth": 11
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "country": "Spain",
+    "towns": [
+      {
+        "town": "Valencia",
+        "latitude": 39.466667,
+        "longitude": -0.375000,
+        "startDate": 4,
+        "startMonth": 11,
+        "endDate": 5,
+        "endMonth": 1 
+      },
+      {
+        "town": "Peníscola",
+        "latitude": 40.3577844,
+        "longitude": 0.4073793,
+        "startDate": 14,
+        "startMonth": 12,
+        "endDate": 14,
+        "endMonth": 12 
+      },
+      {
+        "town": "Tarragona",
+        "latitude": 41.1172364,
+        "longitude": 1.2530982,
+        "startDate": 28,
+        "startMonth": 12,
+        "endDate": 28,
+        "endMonth": 12 
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "country": "Spain",
+    "towns": [
+      {
+        "town": "Granada",
+        "latitude": 37.1734995,
+        "longitude": -3.5995337,
+        "startDate": 5,
+        "startMonth": 1,
+        "endDate": 15,
+        "endMonth": 2  
+      },
+      {
+        "town": "Jaen",
+        "latitude": 37.9557275,
+        "longitude": -3.4920556,
+        "startDate": 12,
+        "startMonth": 1,
+        "endDate": 12,
+        "endMonth": 1 
+      },
+      {
+        "town": "Alhama de Almería",
+        "latitude": 36.9574546,
+        "longitude": -2.5667688,
+        "startDate": 25,
+        "startMonth": 1,
+        "endDate": 26,
+        "endMonth": 1 
+      },
+      {
+        "town": "Ardales",
+        "latitude": 36.8781793,
+        "longitude": -4.8468061,
+        "startDate": 31,
+        "startMonth": 1,
+        "endDate": 1,
+        "endMonth": 2 
+      },
+      {
+        "town": "Estepona",
+        "latitude": 36.4268068,
+        "longitude": -5.1468484,
+        "startDate": 15,
+        "startMonth": 2,
+        "endDate": 22,
+        "endMonth": 3
+      },
+      {
+        "town": "Gibraltar",
+        "latitude": 36.1285933,
+        "longitude": -5.3474761,
+        "startDate": 22,
+        "startMonth": 2,
+        "endDate": 22,
+        "endMonth": 2
+      },
+      {
+        "town": "Tarifa",
+        "latitude": 36.0129082,
+        "longitude": -5.6050213,
+        "startDate": 15,
+        "startMonth": 3,
+        "endDate": 15,
+        "endMonth": 3
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "country": "Andorra",
+    "towns": [
+      {
+        "town": "El Tarter",
+        "latitude": 42.5803334,
+        "longitude": 1.6496963,
+        "startDate": 23,
+        "startMonth": 3,
+        "endDate": 27,
+        "endMonth": 3
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "country": "France",
+    "towns": [
+      {
+        "town": "Paris",
+        "latitude": 48.8534951,
+        "longitude": 2.3483915,
+        "startDate": 27,
+        "startMonth": 3,
+        "endDate": 30,
+        "endMonth": 3
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "country": "Netherlands",
+    "towns": [
+      {
+        "town": "Hilversum",
+        "latitude": 52.2241375,
+        "longitude": 5.1719396,
+        "startDate": 30,
+        "startMonth": 3,
+        "endDate": 5,
+        "endMonth": 3
+      }
+    ]
   }
 ]
